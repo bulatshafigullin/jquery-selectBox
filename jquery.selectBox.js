@@ -359,7 +359,11 @@
      */
     SelectBox.prototype.getLabelText = function () {
         var selected = $(this.selectElement).find('OPTION:selected');
-        return selected.text() || '\u00A0';
+        var parent = selected.parent()[0]
+        var text = selected.text()
+        if (parent && parent.tagName == "OPTGROUP")
+            text += " " + parent.label
+        return text || '\u00A0';
     };
 
     /**
